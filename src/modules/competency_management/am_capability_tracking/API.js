@@ -57,6 +57,16 @@ export default {
       []
     )
   },
+
+  // Lấy danh sách Đơn vị 
+  async GetDepartmentByRoot(parent, departmentId){
+    return await this.getDs(
+      parent,
+      `user/Department/GetDepartmentsByRoot?rootId=${departmentId}`,
+      null
+    )
+  },
+  
   async GetServiceOneBss(parent){
     return await this.getDs(parent, 'revenue/IndicatorConfig/GetServiceOneBss',null)
   },

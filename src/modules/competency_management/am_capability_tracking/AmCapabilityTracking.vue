@@ -86,6 +86,7 @@
 
         </div>
       </div>
+
       <div class="box-form action-wrapper">
         <div class="row align-items-center">
 
@@ -514,7 +515,7 @@ export default {
 <style scoped>
 .stats-wrapper {
   margin-bottom: 12px;
-}
+} 
 
 .filter-wrapper .btn {
   margin-left: 4px;

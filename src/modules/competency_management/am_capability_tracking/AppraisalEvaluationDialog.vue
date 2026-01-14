@@ -391,14 +391,14 @@ export default {
       )
       if (invalidRow) {
         this.$toast.error(
-          `Dịch vụ "${invalidRow.service_name}" không ở trạng thái Chờ thẩm định`
+          `test Dịch vụ "${invalidRow.service_name}" không ở trạng thái Chờ thẩm định -> chưa tạo`
         )
         return
       }
 
       // ===== CONFIRM =====
       const confirm = await this.$confirm(
-        'Thẩm định',
+        'pop-up test Thẩm định',
         'Bạn chắc chắn muốn đồng ý các dòng đã chọn?'
       )
       if (confirm == 0) return

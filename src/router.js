@@ -791,9 +791,18 @@ const router = createRouter({
             requiresAuth: true,
             title: "Dashboard năng lực AM",
           },
+        },
+        //
+        // Giao diện mới thêm
+        {
+          path: "am_capability_appraisal",
+          name: "am_capability_appraisal",
+          component: () => import("@/modules/competency_management/am_capability_tracking/AmCapabilityAppraisal.vue"),
+          meta: {
+            requiresAuth: true,
+            title: "Thẩm định năng lực AM",
+          }
         }
-
-
       ]
     },
     //Project
