@@ -1,0 +1,76 @@
+@media only screen and (min-width:0) {
+    .col-lg-12{
+        padding: 0 !important;
+    }
+    .item-task-row-6{
+        width: 50%;
+    }
+    .value-select{
+        width: calc(100% - 120px);
+    }
+    .info-row .key.w120{
+        padding: 5px;
+        padding-left: 10px;
+        font-weight: 400;
+    }
+    .form-control{
+        border: 1px solid rgba(28, 117, 188 , 0.5);
+    }
+    .select2{
+        /* border: 1px solid rgba(28, 117, 188 , 0.5); */
+        /* border-radius: 4px; */
+    }
+    .select2-selection{
+        border:none !important
+    }
+    .button-edit{
+        text-align: right;
+        margin-bottom: 10px ;
+        margin-right: 5px;
+        margin-top: 5px;
+        margin-right: 18px;
+    }
+     .form-control-datetime{
+        border-right: 1px solid rgba(28, 117, 188 , 0.5) !important;
+        border-radius: 0 !important;
+    }
+    .info-row .value{
+        padding-left: 0 !important;
+        /* border: 1px solid rgba(28, 117, 188 , 0.5) !important; */
+        border-radius: 4px;
+    }
+    .form-control{
+        border-radius: 0;
+    }
+    .border-file-input{
+        border: 1px dotted rgba(28, 117, 188 , 0.5);
+        position: relative;
+        float: left;
+        width: 100%;
+    }
+    .btn-select-file{
+        position: relative;
+        float: left;
+        /* position: relative; */
+        background-color: var(--color-main);
+        color: white;
+    }
+    .ic-select-file{
+        padding: 5px;
+        
+    }
+    .name-file-selected{
+        color: var(--color-main);
+        padding: 5px;
+        margin-top: 2px;
+        display: block;
+        width: 70%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .btn-delete-file{
+        color: red;
+        cursor: pointer;
+    }
+}

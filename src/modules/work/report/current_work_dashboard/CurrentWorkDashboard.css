@@ -1,0 +1,151 @@
+.current-work-dashboard{
+  margin-bottom: 30px;
+}
+.current-work-dashboard .info-row {
+  display: block; /* Cho phép key nằm trên */
+  margin-bottom: 5px;
+}
+.boarder-all-tab{
+  width: 100%;
+}
+.current-work-dashboard .info-row .key {
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+.border-head-center-tab{
+  padding: 0 5px;
+  width: 100%;
+}
+.current-work-dashboard .info-row .value {
+  display: inline-block; /* Giữ input và button nằm ngang */
+  vertical-align: top;
+  padding-left: 0px !important;
+}
+.current-work-dashboard .wp100{
+    width: 100%;
+}
+.current-work-dashboard .wp20{
+    width: 20%;
+}
+.current-work-dashboard .wp80{
+    width: 80%;
+}
+.current-work-dashboard .input-row {
+  display: flex;
+  gap: 5px;
+}
+
+.current-work-dashboard .input-row .value {
+  flex: 1; /* chiếm hết phần còn lại */
+}
+.current-work-dashboard .input-row .w30 {
+  flex: 0 0 30px; /* cố định đúng 30px */
+}
+
+/* Row chứa các nhóm */
+.current-work-dashboard .column-task-wrapper-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  /* gap: 10px; */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  /* padding-bottom: 12px; */
+  transform: scaleY(-1);
+  width: 100%;
+}
+
+/* Nhóm chứa tiêu đề + vùng scroll */
+.current-work-dashboard .column-group {
+
+  min-width: calc(285px * 3 + 35px);
+  width: 50%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: #fdfdfd;
+  padding: 5px;
+  border-radius: 6px;
+  overflow: visible;
+  transform: scaleY(-1);
+}
+@media (max-width: 1199px) {
+  .current-work-dashboard .column-group {
+    min-width: calc(250px * 3 + 35px);
+  }
+}
+
+@media (max-width: 991px) {
+  .current-work-dashboard .column-group {
+    min-width: calc(220px * 2 + 35px);
+  }
+}
+
+@media (max-width: 767px) {
+  .current-work-dashboard .column-group {
+    min-width: 100%;
+  }
+}
+
+
+/* Tiêu đề nhóm */
+.current-work-dashboard .group-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+  background: #eee;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+/* Container đảo ngược trục Y để scroll nằm trên */
+.current-work-dashboard .column-task-scroll {
+  overflow: visible;
+}
+
+/* Nội dung bên trong lật ngược lại để đúng chiều */
+.current-work-dashboard .column-task {
+  /* display: grid; */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  width: 100%;
+  min-height: 800px;
+} 
+
+.current-work-dashboard .column-task-wrapper-row::-webkit-scrollbar {
+  height: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.current-work-dashboard .column-task-wrapper-row::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+.form-search-task{
+   position: absolute; 
+   bottom: 0; 
+   left: 0;
+   margin-bottom: 5px !important;
+}
+@media (max-width: 1000px) {
+  .column-group{
+    width: 100%;
+  }
+}
+::v-deep(.e-input-group.e-control-wrapper) {
+  border-radius: 4px !important;
+  border-color: #E0E0E0 !important;
+}
+
+@media (max-width: 600px) {
+  .current-work-dashboard .column-group {
+    width: 750px;
+    padding: 0;
+  } 
+  .form-search-task{
+   position: relative; 
+   float: left;
+}
+}

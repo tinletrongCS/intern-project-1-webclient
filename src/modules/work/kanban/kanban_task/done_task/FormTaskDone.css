@@ -1,0 +1,46 @@
+@media only screen and (min-width:0){
+    .button-edit{
+        text-align: right;
+        margin-bottom: 10px ;
+        margin-right: 5px;
+        margin-top: 5px;
+        margin-right: 18px;
+    }
+    .form-control{
+        font-size: 15px;
+        border: 1px solid #BAE7FF;
+    }
+    .name-field{
+        font-size: 15px;
+    }
+    .form-select-file{
+        width: 100%;
+        min-height: 45px;
+    }
+    .btn-select-file{
+        border: 1px dotted #BAE7FF;
+        border-radius: 4px;
+        padding: 2px 10px;
+        color: white;
+        background-color: #007bff;
+        position: absolute;
+        right: 0;
+        bottom: 3px;
+        cursor: pointer;
+    }
+    .name-file-selected{
+        text-decoration: underline;
+        cursor: pointer;
+        padding: 5px;
+    }
+    #input-file{
+        display: none;
+    }
+    .btn-delete-file{
+        position: absolute;
+        color: red;
+        right: -5px;
+        top: 0;
+        cursor: pointer;
+    }
+}

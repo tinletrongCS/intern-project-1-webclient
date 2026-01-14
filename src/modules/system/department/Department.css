@@ -1,0 +1,252 @@
+:root {
+    --width: 34.5;
+    --rounding: 4px;
+    --accent: #696;
+    --dark-grey: #ddd;
+    --grey: #eee;
+    --light-grey: #f8f8f8;
+}
+@media only  screen and (min-width:0)   {
+
+    .category-left-form{
+        width: 20%;
+        min-height: 100vh;
+        background-color: rgba(51,51,51,0.1);
+    }
+    .category-item{
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+    }
+    .category-body{
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 7px;
+    }
+    .category-form-title{
+        background-color: var(--color-main);
+        width: 100%;
+        padding: 5px;
+        width: 100%;
+    }
+    .category-title{
+        font-size: var(--font-title);
+        width: 100%;
+        color: white;
+    }
+    .category-text-detail{
+        font-size: var(--font-detail);
+        width: 100%;
+        color: var(--color-main);
+    }
+   
+    .category-right-form{
+        width: 80%;
+    }
+    .form-center{
+        width: 50%;
+    }
+    .category-select-tag{
+        width: 100%;
+        padding: 5px;
+        border: 1px solid rgba(51,51,51,0.5);
+        border-radius: 4px;
+    }
+    .btn{
+        padding: 3px;
+        margin-right: 5px;
+    }
+    .warning-input{
+        color: red;
+    }
+    .bd-form-center{
+        min-height: 100vh;
+        border-left: 1px solid rgba(51,51,51,0.1);
+        background-color: rgba(51, 51, 51, 0.1);
+    }
+
+
+    /* chart */
+    .tree-main{
+        --spacing: 1.5rem;
+        --radius: 10px;
+        padding-left: 0;
+        margin-top: 10px;
+        font-weight: 600;
+        color: var(--color-main);
+    }
+    .tree-main > li > summary::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(var(--spacing) / 2 - var(--radius));
+        left: calc(var(--spacing) - var(--radius) + 12px);
+        width: calc(2 * var(--radius));
+        height: calc(2 * var(--radius));
+        border-radius: 50%;
+    }
+    .tree-main li {
+        display: block;
+        position: relative;
+        padding-left: calc(2 * var(--spacing) - var(--radius) - 0px);     
+        border-left: 2px solid #ddd;
+    }
+    .tree-main > li > summary{
+        margin-left: 15px;
+    }
+    .tree-main li:last-child {
+            border-color: transparent;
+            cursor: pointer;
+    }
+    .tree-main ul li::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(var(--spacing) / -2);
+        left: -2px;
+        width: calc(var(--spacing) + 2px);
+        height: calc(var(--spacing) + 1px);
+        border: solid #ddd;
+        border-width: 0 0 2px 2px;
+    }
+    .tree summary:focus-visible {
+        outline: 1px dotted #000;
+    }
+    
+    .tree-main li::after,
+    .tree-main summary::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(var(--spacing) / 2 - var(--radius));
+        left: calc(var(--spacing) - var(--radius) - 1px);
+        width: calc(2 * var(--radius));
+        height: calc(2 * var(--radius));
+        border-radius: 50%;
+        
+    }
+    .tree-summary-second-li::after{
+        font-family: FontAwesome;
+        content: "\f115" !important;
+        color: var(--color-main) !important;
+        background: white;
+        font-size: 18px;
+        
+    }
+    
+    .tree-main summary::before {
+        z-index: 1;
+        background: #007bff url('../../../assets/img/expand-collapse.svg') 0 0;
+    }
+    
+    .tree-main details[open] > summary::before {
+        background-position: calc(-2* var(--radius)) 0;
+    }
+ /* ============================================================= */
+    .tree {
+        --spacing: 1.5rem;
+        --radius: 10px;
+        padding-left: 0;
+        margin-top: 10px;
+        font-weight: 600;
+        color: var(--color-main);
+        /* text-decoration: underline; */
+    }
+    
+    .tree li {
+        display: block;
+        position: relative;
+        padding-left: calc(2 * var(--spacing) - var(--radius) - 0px);     
+    }
+    
+    .tree ul {
+        margin-left: calc(var(--radius) - var(--spacing));
+        padding-left: 0;
+    }
+    
+    .tree ul li {
+        border-left: 2px solid #ddd;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    
+    .tree ul li:last-child {
+        border-color: transparent;
+        cursor: pointer;
+    }
+    
+    .tree ul li::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(var(--spacing) / -2);
+        left: -2px;
+        width: calc(var(--spacing) + 2px);
+        height: calc(var(--spacing) + 1px);
+        border: solid #ddd;
+        border-width: 0 0 2px 2px;
+    }
+    
+    .tree summary {
+        display: block;
+        cursor: pointer;
+        padding: 0 5px;
+    }
+    
+    .tree summary::marker,
+    .tree summary::-webkit-details-marker {
+        display: none;
+    }
+    
+    .tree summary:focus {
+        outline: none;
+    }
+    
+    .tree summary:focus-visible {
+        outline: 1px dotted #000;
+    }
+    
+    .tree li::after,
+    .tree summary::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: calc(var(--spacing) / 2 - var(--radius));
+        left: calc(var(--spacing) - var(--radius) - 1px);
+        width: calc(2 * var(--radius));
+        height: calc(2 * var(--radius));
+        border-radius: 50%;
+        
+    }
+    .tree-summary-second-li::after{
+        font-family: FontAwesome;
+        content: "\f115" !important;
+        color: var(--color-main) !important;
+        background: white;
+        font-size: 18px;
+        
+    }
+    
+    .tree summary::before {
+        z-index: 1;
+        background: #007bff url('../../../assets/img/expand-collapse.svg') 0 0;
+    }
+    
+    .tree details[open] > summary::before {
+        background-position: calc(-2* var(--radius)) 0;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .category-left-form{
+        width: 100%;
+        min-height: auto;
+    }
+    .bd-form-center{
+        min-height: auto;
+    }
+    .form-center{
+        width: 100%;
+        margin-bottom: 40px;
+    }
+}

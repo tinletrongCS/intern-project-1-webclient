@@ -1,0 +1,115 @@
+@media only screen and (min-width:0) {
+    .main-form{
+        width: 100%;
+    }
+    .left-form{
+        width: 20%;
+        min-height: 100vh;
+        border-right: 1px solid #BAE7FF;
+    }
+    .right-form{
+        width: 80%;
+        min-height: 100vh;
+        padding: 5px;
+        border-radius: 4px;
+    }
+    .row-item{
+        width: 100%;
+        padding: 5px;
+        /* border-bottom: 1px solid #BAE7FF; */
+    }
+    .row-detail-item{
+        width: 50%;
+        font-weight: 500;
+        text-align: left;
+        padding-left: 10px;
+        font-size: 16px;
+    }
+    .row-detail-item-main{
+        font-weight: 500;
+        text-align: left;
+        padding: 5px;
+        font-size: 16px;
+    }
+    .form-resolve{
+        width: 100%;
+        /* border-top: 1px solid #BAE7FF; */
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        padding: 5px;
+        margin-bottom: 5px;
+    }
+    .row-main-detail{
+        font-weight: 600;
+    }
+    .form-inport-file{
+        border: 1px dotted #BAE7FF;
+        border-radius: 4px;
+        padding: 5px;
+    }
+    .text-select-file{
+        background-color: #BAE7FF;
+        padding: 3px 5px;
+        border-radius: 4px;
+        cursor: pointer; 
+    }
+    .file-name{
+        padding: 5px;
+        text-decoration:underline;
+    }
+    .bnt-delete-file{
+        position: absolute;
+        right: 12px;
+        top: 0;
+        width: auto;
+        height: auto;
+        cursor: pointer;
+    }
+    .bnt-delete-file > i{
+        font-size: 18px;
+        color: red;
+    }
+    .btn-outline-secondary{
+        background-color: var(--color-main);
+        color: white;
+        margin-bottom: 10px;
+    }
+    .box-form{
+        margin-bottom: 5px !important;
+        border: 1px solid #BAE7FF; 
+    }
+    .form-comment{
+        border:1px solid #BAE7FF ;
+        border-radius: 4px;
+        width: 97%;
+        padding: 20px;
+    }
+    .fa-comments-o{
+        position: relative;
+        float: left;
+        font-size: 24px;
+        width: 3%;
+        padding-top: 15px;
+    }
+    .avt-user-cmt{
+        border-radius: 50%;
+        border:1px solid #BAE7FF ;
+        margin-right: 3px;
+        padding: 3px 5px;
+    }
+    .form-user-cmt{
+        width: auto;
+    }
+    .form-comment-content{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .fa{
+        color: var(--color-main);
+    }
+    .w120{
+        font-weight: 400;
+    }
+    .info-row{
+        margin-bottom: 10px;
+    }
+}

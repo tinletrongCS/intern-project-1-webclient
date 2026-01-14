@@ -1,0 +1,58 @@
+@media only screen and (min-width:0) {
+    .form-dialog{
+        width: 100%;
+        padding: 10px;
+    }
+    .body-input-account{
+        padding: 5px;
+        width: 100%;
+    }
+    .category-text-detail{
+        font-size: var(--font-detail);
+        width: 100%;
+        color: var(--color-main);
+        margin-top: 5px;
+    }
+    .row-bd-input{
+        width: 100%;
+    }
+    .bd-form-input{
+        width: 100%;
+        padding: 2px;
+        min-height: 50px;
+    }
+    .button-update-account{
+        float: right;
+        background-color:var(--color-btn);
+        color: white;
+        cursor: pointer;
+        margin-top: 5px;
+    }
+    .custom-select{
+        border: 1px solid rgba(28, 117, 188, 0.5) !important;
+    }
+    .form-button{
+        width: 100%;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .bd-it-form{
+        padding: 0 !important;
+    }
+    .text-relationship{
+        border: 1px solid rgba(28, 117, 188, 0.5) !important;
+    }
+    :deep(.select2-container .select2-selection--single){
+        border: 1px solid rgba(28, 117, 188, 0.5) !important;
+    }
+    :deep(.e-date-wrapper){
+        border: 1px solid rgba(28, 117, 188, 0.5) !important;
+    }
+    
+  
+}
+@media only screen and (max-width: 600px) {
+    .bd-form-input{
+        width: 100%;
+    }
+}

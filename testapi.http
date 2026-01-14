@@ -1,0 +1,17 @@
+@base-prod = http://10.165.14.17:30108
+@base-test = https://api-dev-onebss.vnpt.vn
+@token = Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9uaGFudmllbl9kaHN4IjoiNDMwOTc0IiwidXNlcl90dF9jY2JzIjpudWxsLCJpZGVudGlmeSI6Ij0zPzY0Njc0PTQxND03NDAxNzMyNTE2NjYwNzY2NT0zMDc0PTMwPzA3ND0zMD88PDw9MTE_Nz8_MDY0MjEwPzQ_IiwibWFfdGluaCI6bnVsbCwidXNlcl9uYW1lIjoiYWRtaW5fa2hkbiIsImdyb3VwSWQiOiIwIiwiaXNzIjoiaHR0cDovL3F1YW50cmkvb2F1dGgvdG9rZW5fa2V5IiwidXNlcl9ncGhvbmUiOiIwIiwiYXV0aG9yaXRpZXMiOlsiUFJFX0FVVEgiXSwiaWRfZG9udmkiOiI4ODg5NTUiLCJjbGllbnRfaWQiOiJjbGllbnRhcHAiLCJhdWQiOlsicmVzdHNlcnZpY2UiXSwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sIm1hX25oYW52aWVuX2NjYnMiOm51bGwsImRvbnZpX2RsX2lkIjoiODg5MjYyIiwic2VsbGluZ0RlcGFydG1lbnRJZCI6IjAiLCJjc3Nfc2NoIjpudWxsLCJleHAiOjE2OTM5Njc0NTMsInVzZXJfdmkiOiIwIiwibWFfbnYiOiJhZG1pbiIsImlkX3Rpbmh0aGFuaCI6Ijk3IiwiZW1haWwiOiJudHRodXlAdm5wdC52biIsIm5ndW9pZHVuZ19pZCI6IjQyMDY1NCIsImRzX3F1eWVuX2NodXF1YW4iOiJudWxsIn0.irb9K_v3QkCVoaJ05Sc3pIObjT05DJ179bV_-qbidzB__VsHhg_GoYg7iSUFxbo_3IyjU6GdoVZD0BxXv4PXEoielbJTAgDT1wWN9PIcUzCwsGqpjVS4ONAQNH62zxzMa0aE9fCycCsPTcA22GV5Ud_XiYveer5iBV3CXRZ0GLWexVOGOylNbN8MvbIUb4BbZsMAd5VF-nWZYinxmrQKS2Gl80M8Wrdxifarj9M_cKDM2L4876rbVG9Ic4r9GhpjyRSyjYNu2LjtmjIjwfPOyz3BiXP1-EtIAhAS3LD1E5ccewAy_KhWE9F5d-ZXasgjGLYoHHjJV8hYyHCR-NKKfQ
+@contentType = application/json
+#####
+POST {{base-prod}}/login
+Content-Type: {{contentType}}
+
+{
+    "user_name": "epc.system",
+    "password": "abc@123"
+}
+
+#####
+POST {{base-prod}}/web-hopdong/lapdatmoi/ht_nvtc_theodc
+Content-Type: {{contentType}}
+Authorization: {{token}}

@@ -1,0 +1,72 @@
+@media only  screen and (min-width:0) {
+    .box-form{
+        padding: 6px 12px !important;
+    }
+    .bnt-select-file{
+        width: 15%;
+        background-color: var(--color-main);
+        border-radius: 4px;
+        color: white;
+        font-weight: 400;
+        padding: 5px;
+        margin-right: 2%;
+    }
+    .name-file-selected{
+        width: 83%;
+        padding: 10px;
+        border: 1px dotted rgba(51,51,51,0.5);
+        border-radius: 4px;
+    }
+    .bnt-delete-file{
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+        cursor: pointer;
+    }
+    .bnt-delete-file > i{
+        font-size: 18px;
+        color: red;
+    }
+    .btn-outline-secondary{
+        background-color: var(--color-main);
+        color: white;
+        margin-bottom: 10px;
+    }
+    .box-form{
+        margin-bottom: 5px !important;
+        border: 1px solid #BAE7FF; 
+    }
+    .form-head-sc{
+        width: 100%;
+        border: 1px solid #BAE7FF; 
+    }
+    .form-acction{
+        width: 40%;
+    }
+    .form-filter{
+        width: 60%;
+        padding: 5px;
+    }
+    .list-actions-top{
+        box-shadow:none !important;
+        border:none !important;
+    }
+    .select-filter{
+        width: 20%;
+        position: relative;
+        float: left;
+    }
+    .form--month_assign{
+        width: 20%;
+    }
+    .text-note-filter{
+        padding: 5px;
+        color: #0176FF;
+        font-weight: 600;
+    }
+    /* .value{
+        border: 1px solid #BAE7FF; 
+    } */
+}

@@ -1,0 +1,186 @@
+
+@media only screen and (min-width:0) {
+    .k{
+        position: relative;
+        float: left;
+    }
+    .main-form{
+        width: 100vw;
+        /* background: url('../../../assets/img/background_kanban.jpg');  */
+        /* background: white; */
+        min-height: 100vh;
+        overflow:auto;
+        background-color: #fff;
+    }
+    .form-board{
+        width: 100%;
+        background-color: var(--color-bar);
+        margin-bottom: 1em !important;
+    }
+    .select-board{
+        width: 300px;
+    }
+    .text-board{
+        padding: 5px;
+        font-weight: bold;
+    }
+    .clearfix{
+        width: max-content;
+        margin-bottom:25px;
+        
+    }
+    .form-head-work{
+        width: 100%;
+        background-color: var(--color-bar);
+        padding: 5px 10px;
+        padding-bottom: 10px;
+    }
+    .icon-edit-board{
+        font-size: 20px;
+        padding: 5px;
+        cursor: pointer;
+    }
+    .icon-edit-board:hover .tab-edit-board{
+        display: block;
+    }
+    .bd-tab-edit::before{
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border: 1px solid rgba(28, 117, 188, 0.5);
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid rgba(255, 255, 255, 0.651);
+        border-left: 10px solid transparent;
+        top: -10px;
+        right: 0px;
+        position: absolute;
+        
+    }
+    .tab-edit-board{
+        width: 100px;
+        position: absolute;
+        right: 0;
+        top: 30px;
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.9);
+        border: 1px solid #BAE7FF;
+        display: none;
+    }
+    .bd-tab-edit{
+        width: 100%;
+    }
+    .item-edit-board{
+        width: 100%;
+        padding: 5px;
+        border-bottom: 1px solid rgba(51,51,51,0.1);
+        color: var(--color-main);
+        font-size: 14px;
+        position:relative;
+        z-index: 2;
+        font-weight: 600;
+        
+    }
+    
+    .form-search {
+        width: 200px;
+        border-radius: 4px;
+        border: 1px solid #BAE7FF;
+        background-color:white;
+    }
+    .search-ft {
+        width: 80%;
+        border: none;
+        text-align: left;
+        padding: 5px;
+    }
+    .bnt-search-searchview {
+        position: relative;
+        float: right;
+        color: wheat;
+        padding: 5px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+    .form-select-filter{
+        margin-left: 5px;
+    }
+    .text-note-filter{
+        padding: 5px;
+    }
+    .select-filter{
+        padding: 0 5px;
+        min-width: 200px;
+    }
+    .bnt-add-board{
+        text-align: right;
+        margin-bottom: 10px ;
+        margin-right: 5px;
+        margin-top: 5px;
+        margin-right: 18px;
+        color: white;
+        background-color: #007bff;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+    .name-bnt-add-board{
+        
+    }
+    .icon-more-menu-board{
+        color: #007bff;
+    }
+    .form-avt-group{
+        position: relative;
+        float: right;
+        margin-right: 5%;
+    }
+    .icon-form-kb{
+        /* font-size: 16px; */
+        width: 20px;
+    }
+    .btn-seach-task{
+        padding: 5px;
+        margin-left: 5px;
+        color: var(--color-main);
+        font-weight: bold;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        cursor: pointer;
+    }
+    .ic-search-task{
+        padding: 0 3px;
+    }
+    .bnt-add-board:hover{
+        transform: scale(1.03);
+        text-decoration: underline;
+    }
+    .member-board{
+        padding-right: 36px !important;
+        padding-left: 20px!important;
+        padding-top: 7px!important;
+        padding-bottom: 7px!important;
+    }
+
+    .step-kanban{
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-bottom: 2em;
+
+         /*Đảo lên đưa scroll bar lên đầu*/
+        transform: scaleY(-1);
+        padding-bottom: 7px;
+        will-change: transform;
+    }
+    .btn-add-step{
+        width: 180px; 
+        height: 36px; 
+        border-radius: 4px !important; 
+        min-width: 180px;
+
+        /*Đảo lên đưa scroll bar lên đầu*/
+        transform: scaleY(-1) translateZ(0);;
+        align-self: self-end;
+        will-change: transform;
+    }
+}

@@ -1,0 +1,191 @@
+@media only screen and (min-width:0) {
+    * {
+        -webkit-box-sizing: border-box; 
+        -moz-box-sizing: border-box; 
+        box-sizing: border-box; 
+    }
+    
+    ::-moz-selection {
+      background: #C6FF91;
+      text-shadow: none;
+    }
+    
+    ::selection {
+      background: #C6FF91;
+      text-shadow: none;
+    }
+    
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+    
+    .clearfix:after {
+        clear: both;
+    }
+    
+    /* Note styles */
+    .note-wrap {
+        width: 100%;
+        min-height: 200px;
+        /* margin: 0 22px 44px 22px; */
+        position: relative;
+        font-size: 24px;
+        vertical-align: top;
+        padding: 3px 5px;
+        display: inline-block;
+        font-family: Englebert, Arial;
+        color:#4b453c;
+        background: #F7E999;
+        line-height: 34px; 
+        text-align: center;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+        margin-top: 17px;
+        &:before  {
+            display: block;
+            content: "";
+            background: rgba(227, 200, 114, 0.40);
+            width: 70px;
+            height: 22px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            border-radius: 6px / 18px 0;
+            position: absolute;
+            top: -10px;
+            left: 50px;
+            -webkit-transform: rotate(-2deg);
+            -moz-transform: rotate(-2deg);
+            -o-transform: rotate(-2deg);
+            -ms-transform: rotate(-2deg);
+            transform: rotate(-2deg);
+        }
+        & a {
+            color:#6b824f;
+            text-decoration: none;
+            font-size: 20px; 
+            -webkit-transition: all 0.4s ease;
+            -moz-transition: all 0.4s ease;
+            -o-transition: all 0.4s ease;
+            -ms-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+            &:hover {
+                color:#D83A25;
+            }
+        }
+    }
+    
+    .note-color {
+        /* background: #F7E999; */
+        -webkit-transform: rotate(2deg);
+        -moz-transform: rotate(2deg);
+        -o-transform: rotate(2deg);
+        -ms-transform: rotate(2deg);
+        transform: rotate(0deg);
+    }
+    .head-card{
+        width: 100%;
+        min-height: 10px;
+    }
+    .task-code{
+        color: #01458e;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: left;
+        cursor: pointer;
+    }
+    .check-done-task{
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+        top: 5px;
+    }
+    .icon-edit-task{
+        position: absolute;
+        right: 25px;
+        cursor: pointer;
+        top:-5px;
+    }
+    .body-card{
+        width: 100%;
+        padding: 2px;
+    }
+    .card-name-project{
+        font-size: 14px;
+        font-weight: 500;
+        text-align: left;
+    }
+    .card-task-name{
+        font-weight: 600;
+        text-align: left;
+        font-size: 14px;
+        line-height:20px;
+    }
+    .card-deadline{
+        font-weight: 600;
+        text-align: left;
+        font-size: 14px;
+        background-color: rgba(51,51,51,0.2);
+        padding: 0px 5px;
+    }
+    .card-avt-user-assign{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background-image: url('../../../../assets/uploads/avatar-default.png');
+        width: 45px;
+        height: 45px;
+    }
+    .form-edit-task{
+        position: absolute;
+        right: 0
+    }
+    .icon-edit-task:hover .tab-edit-task{
+       display: block;
+    }
+    .tab-edit-task{
+        width: 100px;
+        position: absolute;
+        right: 0;
+        top: 28px;
+        z-index: 10;
+        background-color: rgba(255, 255, 255, 0.651);
+        /* border: 1px solid #BAE7FF; */
+        display: none;
+    }
+    .icon-form-kb{
+        /* font-size: 16px; */
+        width: 20px;
+    }
+    .bd-tab-edit{
+        width: 100%;
+    }
+    .bd-tab-edit::before{
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        /* border: 1px solid #BAE7FF; */
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid rgba(255, 255, 255, 0.651);
+        border-left: 10px solid transparent;
+        top: -9.6px;
+        right: 0px;
+        position: absolute;
+        
+    }
+    .item-edit-task{
+        width: 100%;
+        padding: 0 5px;
+        border-bottom: 1px solid rgba(51,51,51,0.1);
+        color: var(--color-main);
+        font-size: 14px;
+        position:relative;
+        z-index: 2;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .item-edit-task:hover{
+        background-color: rgba(51,51,51,0.5);
+    }
+}

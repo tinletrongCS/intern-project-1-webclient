@@ -1,0 +1,353 @@
+@base = http://10.165.14.17:30108/
+@contentType = application/json
+@createdAt = {{$datetime iso8601}}
+
+#IT00752
+@usr1 = TEST_APP1.HPG
+@pwd1 = dhdbtt2017
+#IT00753
+@usr2 = TEST_APP2.HPG
+@pwd2 = dhdbtt2017
+#CTV045272
+@usr3 = TEST_APP3.HPG
+@pwd3 = dhdbtt2017
+
+#account hcm
+#@usr = 06592
+@usr = ccos.system
+@pwd = abc@123
+### Login
+#TEST_APP.HPG/dhdbtt2017
+POST {{base}}/login HTTP/1.1
+Content-Type: {{contentType}}
+
+{
+	"user_name": "{{usr}}",
+	"password": "{{pwd}}"
+}
+
+@BearerToken = Bearer eyJhbGciOiJIUzUxMiIsImtpZCI6ImVycC1rZXlzIn0.eyJleHAiOjE2OTk0MDYzMDMsImp0aSI6IjE5ZTljNGIwLTg1ZjMtNGE0MC1hMWEwLWFhMTA2NmQxZTliMiIsInN1YiI6IjFhOGY4NWU5LWJmOWQtNDZiMC1iMTIwLWEzMmZiZmE3MzJhYyJ9.vFie7LXGM2XyHacePWVCbPMoQkYxlgSsb5oPMHtARklcjxDuFQmDbmGfiZuf5-xBIq68DJLgq51_bqA-_JqCRA
+
+
+# "data": [
+#     {
+#       "tinh_id": 98,
+#       "tentinh": "VTI-Quốc tế (VTI)"
+#     },
+GET {{base}}/search-user?status=1 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+# {
+#   "code": 200,
+#   "data": {
+#     "data": [
+#     ],
+#     "total_page": 1
+#   },
+#   "error_msg": "",
+#   "msg": "Search org success",
+#   "permission": {
+#     "msg": "Permission granted"
+#   }
+# }
+GET {{base}}/search-org HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+# {
+#   "error_code": "1",
+#   "error_msg": "Tìm kiếm thành công!",
+#   "permission": {
+#     "msg": "Permission granted"
+#   },
+#   "result": []
+# }
+GET {{base}}/program/get?fromN=2023-9-01&toN=2023-9-30&txt&dvi&status=0 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+POST {{base}}/program/delOB HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+[
+    "651e2985869bfa2acb613fca"
+]
+
+#   "collection": [
+#     {
+#       "code": "MCA",
+#       "createdDate": null,
+#       "createdUser": null,
+#       "id": "651bd8b0d1a8d83814ba62b7",
+#       "modifiedDate": null,
+#       "modifiedUser": null,
+#       "name": null
+#     },
+
+GET {{base}}/package/getAll HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+# "content": [
+#     {
+#       "createDate": "2023-10-06T00:31:22.112+00:00",
+#       "createUser": "",
+#       "description": "string",
+#       "id": "string",
+#       "modifiedDate": "2023-10-06T00:31:22.112+00:00",
+#       "modifiedUser": "",
+#       "name": "string",
+#       "nameUnaccented": "string",
+#       "progIds": []
+#     },
+GET {{base}}/progType?size=100000 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+GET {{base}}/progPackage/get?size=100000 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+GET {{base}}/programGroupName/get?size=100000 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+GET {{base}}/program/getAll HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+# {
+#   "error_code": "0",
+#   "error_msg": "id không tồn tại",
+#   "permission": {
+#     "msg": "Permission granted"
+#   },
+#   "result": null
+# }
+GET {{base}}/program/getdata?id=651a45b15465e0368736e92f&name=&value= HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+# {
+#   "error_code": "1",
+#   "error_msg": "hoàn thành",
+#   "permission": {
+#     "msg": "Permission granted"
+#   }
+# }
+PUT {{base}}/program/adddata?id=651a45b15465e0368736e92f HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+{
+	"name":"test",
+	"value":"test"
+}
+
+# {
+#   "error_code": "1",
+#   "error_msg": "hoàn thành",
+#   "permission": {
+#     "msg": "Permission granted"
+#   }
+# }
+PUT {{base}}/program/updata?id=651a45b15465e0368736e92f HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+{
+	"name":"test",
+	"value":"test"
+}
+
+# {
+#   "error_code": "1",
+#   "error_msg": "Xóa thành công thông tin dữ liệu Chương Trình theo danh sách Name!",
+#   "permission": {
+#     "msg": "Permission granted"
+#   }
+# }
+PUT {{base}}/program/deldata?id=651a45b15465e0368736e92f HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+["test"]
+
+
+GET {{base}}/program/getId?id=651a45b15465e0368736e92f HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+
+
+GET {{base}}/search-user?org_code=ccos.system HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+# {
+#   "code": 200,
+#   "data": {
+#     "data": [
+#       {
+#         "created_date": "20231009140540",
+#         "created_user": "System (Super Admin)",
+#         "email": null,
+#         "extra_values": null,
+#         "full_name": "System (Super Admin)",
+#         "org_code": "7efc2e60-3e9b-41f7-846f-3adf950473bf",
+#         "phone_number": null,
+#         "project_code": "5c00abc6-f480-4b2d-917f-e87fc1b8379a",
+#         "project_name": "CCOS",
+#         "status": 1,
+#         "updated_date": "20231009140540",
+#         "updated_user": "System (Super Admin)",
+#         "user_code": "1a8f85e9-bf9d-46b0-b120-a32fbfa732ac",
+#         "user_name": "ccos.system",
+#         "user_type": 1
+#       }
+#     ],
+#     "total_page": 1,
+#     "total_row": 1
+#   },
+#   "error_msg": "",
+#   "msg": "Search user success",
+#   "permission": {
+#     "msg": "Permission granted"
+#   }
+# }
+GET {{base}}/search-user?user_name=ccos.system HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+# {
+#   "error_code": "1",
+#   "error_msg": "Tìm kiếm thành công!",
+#   "permission": {
+#     "msg": "Permission granted"
+#   },
+#   "result": {
+#     "data": [
+#     ],
+#     "total_page": 2,
+#     "total_row": 19
+#   }
+# }
+# {
+#         "createdDate": "2023-10-27T01:54:06.512+00:00",
+#         "id": "6530aed5574e781905ebe0f1",
+#         "isRead": 1,
+#         "messageContent": "Hello notification",
+#         "status": 0
+#       },
+GET {{base}}/message/getListMessage?page=0&&size=10 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+# {
+#   "error_code": "1",
+#   "error_msg": "hoàn thành",
+#   "permission": {
+#     "msg": "Permission granted"
+#   },
+#   "result": [
+#     {
+#       "_message": "hoàn thành",
+#       "_successful": true,
+#       "id": "653107ef02ad457f2f24021e"
+#     }
+#   ]
+# }
+
+POST {{base}}/message/isReads HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+{
+	"ids":[
+		"6530aed5574e781905ebe0f1"
+	],
+	"isReal":0
+}
+
+GET {{base}}/notification/topic?appID=1 HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+POST http://10.168.6.154:30210/notification/kafka-producer-test HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+{
+    "receiveUserId":"1a8f85e9-bf9d-46b0-b120-a32fbfa732ac",
+    "messageContent":"Đang test"
+}
+
+GET {{base}}/message/getListMessage?page=0&&size=1000&&sort=DESC HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+GET {{base}}/message/getUnreadMessageCount HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+# {
+#     "result": [
+#         {
+#             "receiveUserId": "1a8f85e9-bf9d-46b0-b120-a32fbfa732ac",
+#             "UnreadCount": 31
+#         }
+#     ],
+#     "error_msg": "hoàn thành",
+#     "error_code": "1"
+# }
+
+
+GET {{base}}/program/getKBan?id=6527c9fda093d3015947062e HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}
+
+
+
+# {
+#   "error_code": "1",
+#   "error_msg": "hoàn thành",
+#   "permission": {
+#     "msg": "Permission granted"
+#   }
+# }
+POST {{base}}/program/kban?id=6527c9fda093d3015947062e HTTP/1.1
+Content-Type: {{contentType}}
+Mac-address: WEB
+Authorization: {{BearerToken}}

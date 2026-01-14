@@ -1,0 +1,22 @@
+@media only  screen and (min-width:0) {
+    .main-form{
+        width: 100%;
+        padding-bottom: 20px;
+    }
+    .title-header{
+        width: 100%;
+        background-color: var(--color-main);
+        color: white;
+        padding: 5px 10px;
+        font-size: 18px;
+    }
+    .body-form{
+        width: 100%;
+        padding: 5px;
+    }
+    .row-body{
+        width: 100%;
+        padding: 5px;
+        border-bottom: 1px solid #BAE7FF;
+    }
+}

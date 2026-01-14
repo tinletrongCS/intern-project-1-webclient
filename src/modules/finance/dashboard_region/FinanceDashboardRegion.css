@@ -1,0 +1,34 @@
+/* Kiểu dáng chung cho nội dung trang và hộp form */
+.box-form {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.legend-title {
+    font-weight: 600;
+    color: #337ab7;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+}
+
+
+/* Đảm bảo các điều khiển Syncfusion chiếm toàn bộ chiều rộng container */
+.e-control-wrapper.e-dropdownlist,
+.e-control-wrapper.e-datepicker {
+    width: 100%;
+}
+
+/* Kiểu dáng cho biểu đồ */
+#pie-chart,
+.e-chart {
+    min-height: 400px;
+}
+
+::v-deep(.e-input-group.e-control-wrapper) {
+    border-radius: 4px !important;
+    border-color: #E0E0E0 !important;
+}

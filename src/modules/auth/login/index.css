@@ -1,0 +1,78 @@
+@media only screen and (min-width:0) {
+    .login-wrapper .form-group .input-icon.-captcha .refresh {
+        right: 0px;
+        top: 0px;
+        height: 100%;
+        font-size: 80%;
+      }
+      .login-wrapper .acts {
+        text-align: right;
+        padding-top: 20px;
+      }
+      .login-wrapper .acts .btn {
+        padding: 10px 20px;
+      }
+      .login-wrapper .acts .btn.btn-login {
+        width: 35%;
+      }
+      .login-wrapper .acts .btn.btn-outline-light {
+        float: left;
+      }
+      .forget-pass{
+        color: var(--color-main);
+        cursor: pointer;
+        padding: 0 5px;
+        text-decoration: underline;
+      }
+      .login-wrapper .box-login {
+        min-width: 600px;
+        background: #bfdcf2 !important; 
+      }
+      .login-wrapper .box-login .head {
+        font-family: "Roboto";
+        font-weight: 600;
+        color: #007bff;
+      }
+      .login-wrapper .box-login .input-icon.-captcha .form-control {
+        padding-right: 100px;
+      }
+      .login-wrapper .box-login .error {
+        color: #cb0606;
+      }
+      .login-wrapper .box-login .group-hinhthuc .check-action .name {
+        color: #FFF;
+        padding-left: 25px;
+      }
+      .login-wrapper .box-login .group-hinhthuc .check-action .name::before {
+        margin-top: 2px;
+        border-radius: 50%;
+        border-color: #ced4da;
+      }
+      .img-bg{
+          background-image: url("@/assets/img/saigon_line.png") !important;
+          background-position: center !important;
+          background-size: contain !important;
+          height: 100vh !important;
+          background-repeat: no-repeat !important;
+          position: absolute !important;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100% !important;
+      }
+      .bnt-login-mail{
+        color: var(--color-main);
+        padding: 10px 5px;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: left;
+      }
+      .bnt-login-mail > span:hover{
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+
+}
+

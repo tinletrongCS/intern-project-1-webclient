@@ -1,0 +1,59 @@
+<div class="login-wrapper">
+  <div class="img img-bg">
+    <!-- <dev src="@/assets/img/saigon_line.png" alt=""> -->
+  </div>
+  <div class="logo">
+
+    <div style="color: #FFF; display: inline-block;">
+      VNPT
+    </div>
+  </div>
+  <!-- <div class="bg" :style="{ backgroundImage: 'url(../../../assets/img/saigon_line.png)' }"></div> -->
+  <div class="box-login">
+    <div class="head">
+      {{formTitle}}
+    </div>
+    <div class="form">
+      <div class="form-group">
+        <div class="input-icon">
+          <input type="text" placeholder="Tên đăng nhập" v-model.trim="username" class="form-control" @keyup.enter="btnLogin_Click">
+          <span class="icon">
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-icon -show">
+          <input v-model="password" type="password" name="password" placeholder="Mật khẩu" class="form-control" @keyup.enter="btnLogin_Click">
+          <span class="icon">
+            <i class="fa fa-key" aria-hidden="true"></i>
+          </span>
+          <!-- <span class="icon-show fa  fa-eye"></span> -->
+        </div>
+      </div>
+      
+      <div class="form-group error" v-if="formError">
+        <div v-if="loginFailedAccount"><i class="fa fa-exclamation-circle" aria-hidden="true"></i>Tài khoản hoặc mật
+          khẩu không đúng</div>
+        <div v-if="loginFailedOTP">&bull; Số OTP không hợp lệ!</div>
+       
+      </div>
+      <!-- <div style="color: rgb(197, 91, 91);" v-if="loginFailedAccount" ><i class="fa fa-exclamation-circle"  aria-hidden="true"></i>Vui lòng nhập thông tin tài khoản</div> -->
+      <div class="acts">
+        <div class="k bnt-login-mail" >
+          <span  @click="btnLoginSSO_Click">
+            <i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập Email VNPT
+          </span>
+        </div>
+        <span class="forget-pass" @click="forgetPassWord">Quên mật khẩu?</span>
+        <button class="btn btn-primary btn-login bold" @click="btnLogin_Click">Đăng nhập</button>
+      </div>
+      
+      
+    </div>
+  </div>
+  <div class="copyright">
+    TTCNTT &copy; 2024
+  </div>
+</div>
+

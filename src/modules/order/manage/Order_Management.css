@@ -1,0 +1,26 @@
+@media only screen and (min-width:0) {
+  .main-form{
+    width:100%;
+  }
+  .tab-button{
+    width:100%;
+    padding: 5px;
+    border:1px solid #BAE7FF;
+  }
+  .form-filter{
+    width:100%;
+    padding: 5px;
+  }
+  .txt-note{
+    padding: 5px;
+    margin-right: 10px;
+  }
+  .form-select-order{
+    border:1px solid #BAE7FF;
+    border-radius: 4px;
+    min-width: 5%;
+  }
+  .btn{
+    margin-right: 10px;
+  }
+}

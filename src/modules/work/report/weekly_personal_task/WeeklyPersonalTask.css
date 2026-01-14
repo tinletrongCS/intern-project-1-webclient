@@ -1,0 +1,71 @@
+@media only screen and (min-width: 0) {
+  .k {
+    position: relative;
+    float: left;
+  }
+
+  .main-form {
+    width: 100%;
+    padding-bottom: 90px;
+  }
+
+  .full-width {
+    width: 100% !important;
+  }
+
+  .title-filter {
+    width: 100px;
+    /* width: 15%; */
+    padding: 5px 10px;
+  }
+
+  .select-pj {
+    width: calc(100% - 100px);
+  }
+
+  .select2 {
+    width: 100%;
+  }
+
+  .step-kanban {
+    position: relative;
+    float: left;
+    overflow-x: auto;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
+    width: 100%;
+    margin: auto;
+    min-height: 100vh;
+    /* margin: auto; */
+    /*Đảo lên đưa scroll bar lên đầu*/
+    flex-direction: column;
+    background-color: rgba(51, 51, 51, 0.05);
+  }
+
+  .border-all-step {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    /* không xuống hàng */
+    max-width: 100%;
+    /* background-color: green; */
+  }
+
+  .col-weeekly {
+    /* width: 270px; */
+    padding: 3px;
+  }
+
+  .stepformkanban {
+    background: #f0f0f0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 270px;
+    min-width: 270px;
+    display: flex;
+    flex-direction: column;
+    transform: none;
+  }
+}

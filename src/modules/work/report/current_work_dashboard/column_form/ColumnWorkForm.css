@@ -1,0 +1,167 @@
+.border-col-task{
+  padding: 5px;
+  width: calc(100% / 3)
+}
+.column-work-form {
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  width: 100%;
+  max-width: 100%;
+  border: 1px dotted rgba(0, 123, 255, 0.5);
+}
+
+@media (max-width: 1199px) {
+  .column-work-form {
+    width: 250px;
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 991px) {
+  .column-work-form {
+    width: 220px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 767px) {
+  .column-work-form {
+    width: 100%;
+    min-width: 100%;
+  }
+}
+@media (max-width:600px) {
+  .column-work-form {
+    width: 200px;
+    min-width: 100%;
+  }
+  .border-col-task{
+    width: 250px;
+  }
+}
+
+.column-work-form .column-header {
+  position: relative;
+  display: flex;
+  justify-content: center;  /* Căn giữa phần title-wrap */
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 5px;
+  /* padding-right: 30px; */
+}
+
+.column-work-form .column-header .title-wrap {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  gap: 4px;
+}
+
+.column-work-form .column-header .count {
+  background: #007bff;
+  color: #fff;
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-size: 14px;
+}
+
+.column-work-form .column-header .title{
+  align-items: center !important;
+}
+
+.column-work-form .column-header .menu-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.column-work-form .column-header .task-menu {
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+/* .column-work-form .column-header .task-menu:hover {
+  background-color: white;
+  border-radius: 4px;
+} */
+
+.column-work-form .add-task {
+  background: white;
+  border: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 4px;
+  padding: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.column-work-form .add-task:hover {
+  background: #007bff;
+  color: white;
+}
+.column-work-form .dropdown {
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  z-index: 100;
+  min-width: 100px;
+}
+
+.column-work-form .dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.column-work-form .dropdown-item:hover {
+  background-color: #f2f2f2;
+}
+.column-work-form .menu-wrapper {
+  position: relative; /* Quan trọng để dropdown căn theo đây */
+}
+
+.column-work-form .column-header .task-menu {
+  cursor: pointer;
+  font-size: 18px;
+  color: #444;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.column-work-form .column-header .task-menu:hover {
+  color: #007bff;
+}
+
+.dropdown-column {
+  /* position: absolute; */
+  right: 0;
+  top: 120%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-radius: 6px;
+  z-index: 100;
+  min-width: 100px;
+}
+
+.dropdown-item-column {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown-item-column:hover {
+  background-color: #f2f2f2;
+}

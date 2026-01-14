@@ -1,0 +1,90 @@
+@media only screen and (min-width:0) {
+  .left-form {
+    width: 20%;
+  }
+
+  .right-form {
+    width: 80%;
+  }
+
+  .spit-left-form {
+    width: 20%;
+  }
+
+  .spit-right-form {
+    width: 80%;
+  }
+
+  .title-form {
+    width: 100%;
+    border-right: 1px solid rgba(28, 117, 188, 0.5);
+    border-bottom: 1px solid rgba(28, 117, 188, 0.5);
+    padding: 5px;
+  }
+
+  .form-table {
+    width: 100%;
+  }
+
+  .title {
+    font-size: 18px;
+    color: black;
+    padding: 5px;
+    font-weight: 600;
+  }
+
+  .form-edit-group {
+    position: relative;
+    float: left;
+  }
+
+  .btn-change {
+    color: white;
+    border-radius: 4px;
+    margin-right: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  .btn-change>i {
+    font-size: 16px;
+    margin-right: 3px;
+  }
+
+  .btn-change:hover {
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .bd-group-board {
+    padding: 5px;
+  }
+
+  .text-name-group-board {
+    width: 100%;
+    border-bottom: 1px solid rgba(28, 117, 188, 0.2);
+    border-top: 1px solid rgba(28, 117, 188, 0.2);
+    padding: 5px 10px;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
+    background: linear-gradient(to right, #5ca4ed, #a7b4e5);
+  }
+
+  .text-name-group-board:hover {
+    text-decoration: underline;
+  }
+
+  .selet-btn {
+    background: linear-gradient(to right, #022d58, #0575E6) !important;
+  }
+  :deep(.select2-container .select2-selection--single){
+      border: 1px solid rgba(28, 117, 188, 0.5) !important;
+  }
+  :deep(.e-date-wrapper){
+      border: 1px solid rgba(28, 117, 188, 0.5) !important;
+  }
+}

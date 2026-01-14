@@ -1,0 +1,358 @@
+/* ===== CONTRACT MODAL SPECIFIC STYLES ===== */
+
+/* Nút bấm trong modal */
+.modal-buttons {
+  margin-top: 37px !important;
+  margin-bottom: 10px !important;
+}
+
+.btn-save-contract {
+  width: 180px;
+}
+
+/* Nhãn và checkbox nhắc hạn */
+.reminder-label {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.reminder-checkbox {
+  position: relative;
+  margin-left: 0;
+  border: #666 solid 1px;
+}
+
+/* Vùng upload file */
+.file-upload-area {
+  position: relative;
+  border: 2px dashed #007bff;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #f8f9fa;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload-area.dragover {
+  border-color: #28a745 !important;
+  background-color: #d4edda !important;
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.2);
+}
+
+.upload-icon-container {
+  margin-top: 16px;
+}
+
+.upload-icon {
+  font-size: 48px;
+  color: #007bff;
+  margin-bottom: 16px;
+  transition: all 0.3s ease;
+}
+
+.upload-text {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.file-upload-area.dragover .upload-text,
+.file-upload-area.dragover .upload-icon {
+  color: #28a745 !important;
+}
+
+.file-upload-area.dragover .upload-icon {
+  transform: scale(1.1);
+}
+
+.clickable-text {
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 600;
+  color: #007bff;
+}
+
+.clickable-text:hover {
+  color: #0056b3 !important;
+}
+
+.hidden-attach-file {
+  display: none;
+}
+
+
+/* Danh sách file đã đính kèm */
+.existing-files-container {
+  margin-bottom: 15px;
+}
+
+.file-item-display {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #f8f9fa;
+  transition: all 0.2s ease;
+}
+
+.file-item-display:hover {
+  background-color: #e9ecef !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file-icon {
+  margin-right: 8px;
+  color: #007bff;
+}
+
+.file-details {
+  flex: 1;
+}
+
+.file-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.file-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+.btn-delete-file {
+  margin-left: 8px;
+}
+
+.no-files-placeholder {
+  text-align: center;
+  color: #666;
+  padding: 20px;
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+}
+
+.no-files-placeholder p {
+  margin: 8px 0 0 0;
+}
+
+.no-files-icon {
+  font-size: 24px;
+  color: #ccc;
+}
+
+/* Nav tabs styling for Contract module */
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  background-color: #fff !important;
+  color: #035FCC !important;
+}
+
+.nav-link {
+  color: #495057;
+}
+
+.form-seach-more {
+  /* position: absolute;
+  right: 10px;
+  width: auto;
+  top: 60px;
+  font-weight: bold;
+  color: var(--color-main); */
+}
+
+.btn {
+  box-shadow: none !important;
+}
+
+.form-seach-more>div>div>button {
+  /* background-color: rgba(51,51,51,0.5); */
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 12px;
+}
+
+.section-header__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 0;
+  color: #2f7cff;
+  vertical-align: middle !important;
+}
+
+.section-header__title {
+  /* color: #2f7cff; */
+  font-weight: 600;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.section-header__line {
+  flex: 1;
+  height: 1px;
+  background: #e9ecef;
+  /* đường kẻ mảnh */
+  margin-left: 10px;
+}
+
+.section-header--under {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 12px;
+  position: relative;
+  padding-bottom: 8px;
+  /* chừa chỗ cho line bên dưới */
+}
+
+.section-header--under::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #e9ecef;
+}
+
+:deep(.e-control.e-dialog.contract-modal.e-popup-open .e-dlg-content) {
+  max-height: 85vh !important;
+  overflow-y: auto;
+}
+
+:deep(.datepicker-contract .e-input-group),
+:deep(.datepicker-contract .e-input-group-icon),
+:deep(.datepicker-contract .e-control-wrapper.e-input-group),
+:deep(.datepicker-contract input.e-input) {
+  border-color: #ced4da !important;
+}
+
+.datepicker-contract.e-input-group:not(.e-success):not(.e-warning):not(.e-error),
+.datepicker-contract.e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error) {
+  border-color: #ced4da !important;
+}
+
+/* test */
+/* ContractManagement.vue */
+:deep(.e-grid .e-gridheader) {
+  border-top: 1px solid #dcdcdc !important;
+  border-left: 1px solid #dcdcdc !important;
+  border-right: 1px solid #dcdcdc !important;
+}
+
+:deep(.e-grid .e-gridheader .e-headercontent) {
+  border-bottom: 1px solid #dcdcdc !important;
+}
+
+/* IMPORTANT: Syncfusion header cell thực tế là TH */
+:deep(.e-grid .e-gridheader .e-table th.e-headercell) {
+  border-right: 1px solid #dcdcdc !important;
+  border-bottom: 1px solid #dcdcdc !important;
+}
+
+/* header nhiều cấp (stacked/group header) */
+:deep(.e-grid .e-gridheader .e-table th.e-stackedheadercell),
+:deep(.e-grid .e-gridheader .e-table th.e-grouptopleftcell) {
+  border-right: 1px solid #dcdcdc !important;
+  border-bottom: 1px solid #dcdcdc !important;
+}
+
+/* cell cuối */
+:deep(.e-grid .e-gridheader .e-table th.e-headercell:last-child) {
+  border-right: none !important;
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+@keyframes blinkBorder {
+  0% {
+    border-color: #dc3545;
+  }
+
+  50% {
+    border-color: transparent;
+  }
+
+  100% {
+    border-color: #dc3545;
+  }
+}
+
+.blink {
+  animation: blinkBorder 1.5s ease-in-out 3;
+}
+
+/* Viền đỏ cho select2 khi lỗi */
+.select2-wrap.is-invalid .select2-container--default .select2-selection--single,
+.select2-wrap.is-invalid .select2-container--default .select2-selection--multiple {
+  border: 1px solid #dc3545 !important;
+}
+
+/* Nhấp nháy border của select2 */
+@keyframes blinkBorder {
+  0% {
+    border-color: #dc3545;
+  }
+
+  50% {
+    border-color: transparent;
+  }
+
+  100% {
+    border-color: #dc3545;
+  }
+}
+
+.select2-wrap.blink .select2-container--default .select2-selection--single,
+.select2-wrap.blink .select2-container--default .select2-selection--multiple {
+  animation: blinkBorder 0.5s ease-in-out infinite;
+}
+
+/* Viền đỏ khi lỗi */
+.select2-wrap.is-invalid :deep(.select2-selection--single),
+.select2-wrap.is-invalid :deep(.select2-selection--multiple) {
+  border: 1px solid #dc3545 !important;
+}
+
+/* Nhấp nháy vô hạn */
+@keyframes blinkBorder {
+  0% {
+    border-color: #dc3545;
+  }
+
+  50% {
+    border-color: transparent;
+  }
+
+  100% {
+    border-color: #dc3545;
+  }
+}
+
+.select2-wrap.blink :deep(.select2-selection--single),
+.select2-wrap.blink :deep(.select2-selection--multiple) {
+  animation: blinkBorder 0.5s ease-in-out infinite;
+}
+
+:deep(.datepicker-contract.e-input-group:not(.e-success):not(.e-warning):not(.e-error)),
+:deep(.datepicker-contract.e-input-group.e-control-wrapper:not(.e-success):not(.e-warning):not(.e-error)) {
+  border-color: #ced4da !important;
+}
+
+

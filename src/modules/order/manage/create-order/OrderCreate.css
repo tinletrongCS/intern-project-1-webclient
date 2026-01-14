@@ -1,0 +1,72 @@
+@media only screen and (min-width:0) {
+  
+  .body-dialog{
+    padding: 10px;
+  }
+  .top-form{
+    border-radius: 5px;
+    border:1px solid #BAE7FF;
+    padding-top: 10px;
+    margin-bottom: 20px;
+  }
+  .title-top{
+    background-color: white;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-weight: 600;
+    font-size: var(--font-detail);
+  }
+  .border-row-item{
+    width: 50%;
+    padding: 5px;
+  }
+  .title-file-import{
+    width: 100%;
+    color: var(--color-main);
+    font-weight: 300;
+    /* margin-top: 5px; */
+    /* padding-bottom:3px; */
+  }
+  .form-input-file-attach{
+    width: 100%;
+    border:1px dotted #BAE7FF;
+    padding: 5px;
+  }
+  .browse-file{
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background-color: var(--color-main);
+      color: white;
+      padding: 4px;
+      margin: auto;
+      cursor: pointer;
+      text-decoration: underline;
+  }
+  .form-content{
+    width: 100%;
+    border:1px solid #BAE7FF;
+    height: 32px;
+  }
+  .card{
+    width: 100%;
+  }
+  .bd-form-finance{
+     overflow: auto;
+     max-width: 100%;
+  }
+  .form-checkbox{
+    width: 33.333%;
+  }
+  .ic-checkbox{
+    margin-top: 7px;
+    border-radius: 4px;
+    color: var(--color-main);
+    border:1px dotted #BAE7FF;
+  }
+  .text-name-checkbox{
+    padding: 3px;
+  }
+}
