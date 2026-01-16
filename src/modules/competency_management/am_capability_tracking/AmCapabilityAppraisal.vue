@@ -77,7 +77,7 @@
     <AppraisalEvaluationDialog
       ref="appraisalDialog"
       :data="appraisalList"
-      :user_id="staff_selected"
+      :user_id="popup_user_id"
       @success="successAppraisal"
     />
     <CheckImportIndicatorUserScoreModal
@@ -112,6 +112,7 @@ export default {
         title: 'Thẩm định năng lực AM',
         list: []
       },
+      popup_user_id: 0,
 
       unit_selected:0,
       staff_selected: null,
@@ -138,14 +139,107 @@ export default {
   },
   methods: {
     // 2. HÀM MỞ POPUP (Bổ sung để hết lỗi Vue Warn)
-    openAppraisalPopup(row) {
-      if (row && row.services && row.services.length > 0) {
-        // Map ra danh sách ID để duyệt
-        this.appraisalList = row.services.map(s => s.indicator_user_score_id);
-        // Mở modal
-        this.$refs.appraisalDialog.showModal();
-      } else {
-        this.$toast.warning("Không có dữ liệu để xem");
+  //   async openAppraisalPopup(row) {
+  //   // 1. Lưu User ID vào biến riêng cho Popup
+  //   this.popup_user_id = row.user_id;
+
+  //   // 2. Gọi API lấy chi tiết các dịch vụ của User này
+  //   // (Tận dụng hàm GetIndicatorTreeByUser có sẵn để lấy danh sách)
+  //   let res = await API.GetIndicatorTreeByUser(this, {
+  //     userId: row.user_id,
+  //     statusId: 1, // 1 = Chỉ lấy trạng thái Chờ thẩm định
+  //     serviceId: 0,
+  //     searchText: ''
+  //   });
+
+  //   if (res) {
+  //     let data = (typeof res === 'string') ? JSON.parse(res) : res;
+  //     let listIds = [];
+
+  //     // 3. Xử lý dữ liệu trả về để lấy ra mảng các ID (indicator_user_score_id)
+  //     // Vì API trả về dạng Cây hoặc List, ta duyệt để gom hết ID lại
+  //     if (Array.isArray(data)) {
+  //       data.forEach(group => {
+  //         // Trường hợp 1: Dữ liệu phân cấp (có children)
+  //         if (group.children && group.children.length > 0) {
+  //           group.children.forEach(child => {
+  //             if(child.indicator_user_score_id) listIds.push(child.indicator_user_score_id);
+  //           });
+  //         }
+  //         // Trường hợp 2: Dữ liệu phẳng (không có children)
+  //         else if (group.indicator_user_score_id) {
+  //           listIds.push(group.indicator_user_score_id);
+  //         }
+  //       });
+  //     }
+
+  //     // 4. Kiểm tra nếu không có gì để thẩm định
+  //     if (listIds.length === 0) {
+  //       this.$toast.warning("Nhân sự này không còn dịch vụ nào chờ thẩm định.");
+  //       return;
+  //     }
+
+  //     // 5. Gán danh sách ID vào biến data truyền xuống Dialog
+  //     this.appraisalList = listIds;
+
+  //     // 6. Mở Dialog (Dialog sẽ tự load chi tiết dựa trên list ID này)
+  //     if (this.$refs.appraisalDialog) {
+  //       // Gọi showModal không cần tham số vì đã truyền props ở trên
+  //       this.$refs.appraisalDialog.showModal(); 
+  //     }
+  //   }
+  // },
+    async openAppraisalPopup(row) {
+      // 1. Lưu User ID
+      this.popup_user_id = row.user_id;
+
+      // 2. Gọi API
+      let res = await API.GetIndicatorTreeByUser(this, {
+        userId: row.user_id,
+        statusId: 1, 
+        serviceId: 0,
+        searchText: ''
+      });
+
+      if (res) {
+        let data = (typeof res === 'string') ? JSON.parse(res) : res;
+        let listIds = [];
+
+        // --- HÀM ĐỆ QUY LẤY ID (SỬA ĐOẠN NÀY) ---
+        // Hàm này sẽ tự động đào sâu vào tất cả các cấp con/cháu để tìm ID
+        const findIdsRecursive = (nodes) => {
+           if (!nodes || !Array.isArray(nodes)) return;
+
+           nodes.forEach(node => {
+              // 1. Nếu node này là dịch vụ (có ID) -> Lấy luôn
+              if (node.indicator_user_score_id) {
+                 listIds.push(node.indicator_user_score_id);
+              }
+
+              // 2. Nếu node này là Nhóm (có con) -> Đào tiếp vào trong
+              if (node.children && node.children.length > 0) {
+                 findIdsRecursive(node.children);
+              }
+           });
+        }
+
+        // Bắt đầu tìm từ dữ liệu gốc
+        findIdsRecursive(data);
+        // ----------------------------------------
+
+        console.log("Danh sách ID cuối cùng:", listIds); 
+
+        // 4. Kiểm tra
+        if (listIds.length === 0) {
+          this.$toast.warning("Nhân sự này không còn dịch vụ nào chờ thẩm định.");
+          return;
+        }
+
+        // 5. Mở Dialog
+        this.appraisalList = listIds;
+        if (this.$refs.appraisalDialog) {
+          this.$refs.appraisalDialog.showModal(); 
+        }
       }
     },
     onChangeUnit() {
@@ -188,38 +282,24 @@ export default {
       }
       this.$refs.updateCapabilityContractDialog.showModal()
     },
-    onAppraisal(){
+    onAppraisal() {
+      // 1. Kiểm tra xem đã chọn dòng (nhân viên) nào chưa
       if (!this.selectedRows || this.selectedRows.length === 0) {
-        this.$toast.error('Vui lòng chọn dữ liệu cần cập nhật')
-        return
+        this.$toast.warning('Vui lòng chọn nhân sự để thẩm định');
+        return;
       }
 
-      const invalidRow = this.selectedRows.find(
-        r => r.indicator_user_score_id == null
-      )
-
-      if (invalidRow) {
-        this.$toast.error(
-          `Dịch vụ "${invalidRow.service_name}" chưa được tạo đánh giá`
-        )
-        return
+      // 2. Chỉ cho phép chọn 1 nhân viên (vì Popup thiết kế để hiển thị cây chi tiết của 1 người)
+      if (this.selectedRows.length > 1) {
+        this.$toast.warning('Vui lòng chỉ chọn 1 nhân sự mỗi lần để xem chi tiết');
+        return;
       }
 
-      // 🔴 CHECK trạng thái: chỉ cho CHỜ THẨM ĐỊNH
-      const invalidStatusRow = this.selectedRows.find(
-        r => r.evaluation_status !== 1
-      )
+      // 3. Lấy dòng nhân viên được chọn
+      const selectedUser = this.selectedRows[0];
 
-      if (invalidStatusRow) {
-        this.$toast.warning(
-          `Dịch vụ "${invalidStatusRow.service_name}" đang ở trạng thái "${invalidStatusRow.evaluation_status_name}", không thể thẩm định`
-        )
-        return
-      }
-      this.appraisalList=this.selectedRows.map(x=>x.indicator_user_score_id)
-
-      // ✅ OK → mở dialog
-      this.$refs.appraisalDialog.showModal()
+      // 4. Gọi lại hàm openAppraisalPopup để tái sử dụng logic tải dữ liệu và mở bảng
+      this.openAppraisalPopup(selectedUser);
     },
 
     async loadDataGrid() {
