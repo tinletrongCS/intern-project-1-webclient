@@ -793,7 +793,7 @@ const router = createRouter({
           },
         },
         //
-        // Giao diện mới thêm
+        // Giao diện thẩm định năng lực AM 
         {
           path: "am_capability_appraisal",
           name: "am_capability_appraisal",

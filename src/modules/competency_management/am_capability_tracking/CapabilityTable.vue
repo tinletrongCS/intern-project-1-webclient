@@ -29,7 +29,7 @@
             <th style="width:140px">Trạng thái</th>
           </tr>
         </thead>
-
+        
         <tbody>
           <template v-for="row in pagedRows" :key="row._key">
 
@@ -157,7 +157,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'DANH SÁCH THÔNG TIN KHUNG NĂNG LỰC'
+      default: 'DANH SÁCH KHUNG NĂNG LỰC CHỜ THẨM ĐỊNH'
     },
     dataSource: {
       type: Array,

@@ -4,25 +4,13 @@
 
     <div class="page-content" style="top:46px !important; bottom: 46px !important;">
        <input ref="fileInput" id="file" type="file" @change="onChangeFile($event)" accept=".xls, .xlsx" style="display:none" class="form-control ">
-      <!-- ===== STATISTIC ===== -->
-      <div class="stats-wrapper">
-        <div class="row">
-          <div class="col-md-3 col-sm-6 col-12">
-            <StatisticsCard label="Tổng điểm đánh giá" :value="statistics.total_point" icon="👥" color="blue" />
-          </div>
-          <div class="col-md-3 col-sm-6 col-12">
-            <StatisticsCard label="Chuyên nghiệp" :value="statistics.pro_point" icon="⭐" color="green" />
-          </div>
-          <div class="col-md-3 col-sm-6 col-12">
-            <StatisticsCard label="Khởi đầu" :value="statistics.start_point" icon="🌱" color="yellow" />
-          </div>
-          <div class="col-md-3 col-sm-6 col-12">
-            <StatisticsCard label="Dịch vụ" :value="statistics.service_count" icon="📄" color="purple" />
-          </div>
-        </div>
-      </div>
 
       <!-- ===== FILTER ===== -->
+      <div class="report-header-left">
+        <p>
+          Theo dõi và thống kê số lượng các dịch vụ cần thẩm định của các nhân viên theo từng đơn vị kinh doanh.
+        </p>
+      </div>
       
       <div class="box-form filter-wrapper">
         <div class="row">
@@ -41,7 +29,7 @@
               </div>
             </div>
           </div>
-
+          <!-- Đơn vị-->
           <div class="col-sm-3 col-12">
             <div class="info-row">
               <div class="key bold w60">Đơn vị</div>
@@ -59,15 +47,8 @@
       <div class="box-form action-wrapper">
         <div class="row align-items-center">
 
-          <!-- Bên trái -->
-          <div class="col-md-6 col-12">
-            <button class="btn btn-outline-secondary btn-sm" @click="onUpdate">
-              <span class="icon fa fa-edit"></span> Cập nhật
-            </button>
-          </div>
-
           <!-- Bên phải -->
-          <div class="col-md-6 col-12 text-right action-buttons">
+          <div class="col-md-6 col-12 btn-sm float-right action-buttons">
             <button class="btn btn-purple btn-sm" 
                     @click="onAppraisal">
               <span class="icon fa fa-check"></span> Thẩm định
@@ -78,10 +59,11 @@
       </div>
 
       <!-- ===== TABLE ===== -->
-      <CapabilityTable
-        ref="capabilityTable"
+      <CapabilityAppraisalTable
+        ref="capabilityAppraisalTable"
         :dataSource="capabilityData"
         @selection-change="onSelectionChange"
+        @click-view="openAppraisalPopup"
         :pageSize="10"
       />
 
@@ -108,7 +90,8 @@
 
 <script>
 import StatisticsCard from './StatisticsCard.vue'
-import CapabilityTable from './CapabilityTable.vue'
+//import CapabilityTable from './CapabilityTable.vue'
+import CapabilityAppraisalTable from './CapabilityAppraisalTable.vue'
 import API from './API'
 import UpdateCapabilityContractDialog from './UpdateCapabilityContractDialog.vue'
 import AppraisalEvaluationDialog from './AppraisalEvaluationDialog.vue'
@@ -118,7 +101,7 @@ export default {
   name: 'AmCapability',
   components: {
     StatisticsCard,
-    CapabilityTable,
+    CapabilityAppraisalTable,
     UpdateCapabilityContractDialog,
     AppraisalEvaluationDialog,
     CheckImportIndicatorUserScoreModal
@@ -130,31 +113,11 @@ export default {
         list: []
       },
 
-      search_text: '',
-      service_selected: 0,
+      unit_selected:0,
       staff_selected: null,
-      status_selected:-1,
-      status_list:[
-        {
-          id:-1,
-          text:'Tất cả'
-        },
-        {
-          id:0,
-          text:'Chưa tạo'
-        },
-        {
-          id:1,
-          text:'Chờ thẩm định'
-        },
-        {
-          id:2,
-          text:'Đã thẩm định'
-        }
-      ],
-
       service_list: [],
       staff_list: [],
+      unit_list: [],
 
       /* ===== MOCK DATA 3 CẤP ===== */
       capabilityData: [],
@@ -174,13 +137,19 @@ export default {
     }
   },
   methods: {
+    // 2. HÀM MỞ POPUP (Bổ sung để hết lỗi Vue Warn)
+    openAppraisalPopup(row) {
+      if (row && row.services && row.services.length > 0) {
+        // Map ra danh sách ID để duyệt
+        this.appraisalList = row.services.map(s => s.indicator_user_score_id);
+        // Mở modal
+        this.$refs.appraisalDialog.showModal();
+      } else {
+        this.$toast.warning("Không có dữ liệu để xem");
+      }
+    },
     onChangeUnit() {
       this.loadDataGrid()
-    },
-    SearchText() {
-      // call API reload table
-      this.loadDataGrid()
-      this.loadStatistics()
     },
     onChangeService(val) {
       this.loadDataGrid()
@@ -212,10 +181,6 @@ export default {
         })
       })
     },
-    importFile(){
-      this.$refs.fileInput.value=null
-      document.getElementById("file").click()
-    },
     onUpdate(){
       if(!this.selectedRows||this.selectedRows.length==0){
         this.$toast.error('Vui lòng chọn dữ liệu cần cập nhật')
@@ -229,7 +194,6 @@ export default {
         return
       }
 
-      // 🔴 CHECK indicator_user_score_id
       const invalidRow = this.selectedRows.find(
         r => r.indicator_user_score_id == null
       )
@@ -257,42 +221,31 @@ export default {
       // ✅ OK → mở dialog
       this.$refs.appraisalDialog.showModal()
     },
-    async loadDataGrid(){
-      this.selectedRows=[]
-      this.capabilityData=[]
-      var data = await API.GetIndicatorTreeByUser(this, {
-        serviceId: this.service_selected,
-        userId:this.staff_selected,
-        statusId:this.status_selected,
-        searchText:this.search_text?this.search_text.trim():''
+
+    async loadDataGrid() {
+      var result = await API.GetAppraisalList(this, {
+        departmentId: this.unit_selected || 0,
+        userId: this.staff_selected
       })
-      if(data){
-        data=JSON.parse(data)
-        this.capabilityData =  data.concat([])
+      if (result){
+        var parsedData = (typeof result == 'string') ? JSON.parse(result) : result
+        this.capabilityData = Array.isArray(parsedData) ? parsedData : [];
+      }
+      else
+      {
+        this.capabilityData = [];
       }
     },
     async loadPage(){
-      var data = await API.GetServiceOneBss(this)
-      if(data){
-        data=JSON.parse(data)
-        this.service_list = [
-        { id: 0, text: 'Tất cả' },
-          ...data.map(x => ({
-            id: x.device_profile_id,
-            text: x.device_profile_name
-          }))
-        ]
-      }
       let result=await API.GetUsersByUserUnit(this)
       if(result){
-        this.staff_list=this.staff_list.concat(JSON.parse(result))
+        this.staff_list=JSON.parse(result)
       }
       var userId=this.$_root.token.getUserId()
       if(userId&&this.staff_list.findIndex(x=>x.user_id==userId)>-1){
         this
         .staff_selected=userId
       }
-      //1 - Từ VNPT HCM
       var department = await API.GetDepartmentByRoot(this, 1)
       if(department){
         department=JSON.parse(department)
@@ -316,19 +269,15 @@ export default {
         start_point:0,
         service_count:0
       }
-      var data = await API.GetIndicatorUserStatistics(this, {
-        serviceId: this.service_selected,
-        userId:this.staff_selected,
-        searchText:this.search_text?this.search_text.trim():''
+      var data = await API.GetAppraisalList(this, {
+        departmentId: this.unit_selected || 0,
+        userId:this.staff_selected
       })
       if(data){
         data=JSON.parse(data)
         this.statistics=Object.assign({},data)
-        // this.capabilityData =  data.concat([])
+  
       }
-    },
-    exportExcelAmCapabilityTracking(){
-      this.$refs.capabilityTable.exportExcel()
     },
     successAddUpdate(){
       this.loadDataGrid()
@@ -336,149 +285,7 @@ export default {
     onChangeFile(event){
       this.file=event.target.files[0]
       this.readFileExcel()
-    },
-    readFileExcel() {
-      this.danhsach_excel = []
-
-      try {
-        this.loading(true)
-
-        if (!this.checkfile()) return
-
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          const bstr = e.target.result
-          const wb = XLSX.read(bstr, { type: 'binary' })
-
-          // ===== LẤY SHEET ĐẦU =====
-          const wsname = wb.SheetNames[0]
-          const ws = wb.Sheets[wsname]
-
-          // ===== READ DATA =====
-          const data = XLSX.utils.sheet_to_json(ws, {
-            header: 1,
-            raw: true,      // LẤY NUMBER THẬT
-            defval: null
-          })
-
-          if (!data || data.length <= 1) {
-            this.$toast.error('File Excel không có dữ liệu')
-            return
-          }
-
-          const columns = data[0]
-          if (!this.kiemTraDuLieu(columns)) return
-
-          let isError = false
-
-          // ===== LOOP DATA =====
-          for (let i = 1; i < data.length; i++) {
-            const row = data[i]
-            if (!row || row.every(v => v == null || v == '')) continue
-
-            // ===== DỊCH VỤ =====
-            const service_name = row[1] != null ? row[1].toString().trim() : null
-            if (!service_name) {
-              this.$toast.error(`Dòng ${i + 1}: Dịch vụ không được để trống`)
-              isError = true
-              break
-            }
-
-            // ===== GIÁ TRỊ HỢP ĐỒNG =====
-            let contract_value = row[2]
-            if (contract_value !== null && contract_value != '') {
-              if (typeof contract_value !== 'number' || isNaN(contract_value)) {
-                this.$toast.error(`Dòng ${i + 1}: Giá trị hợp đồng phải là số hoặc để trống`)
-                isError = true
-                break
-              }
-            } else {
-              contract_value = null
-            }
-
-            // ===== HỢP ĐỒNG NGHIỆM THU =====
-            let acceptance_raw = row[3]
-            let acceptance_str = acceptance_raw != null
-              ? acceptance_raw.toString().trim()
-              : ''
-
-            if (acceptance_str !== '' && acceptance_str.toUpperCase() != 'X') {
-              this.$toast.error(
-                `Dòng ${i + 1}: Cột "Hợp đồng đã nghiệm thu" chỉ được nhập X hoặc để trống`
-              )
-              isError = true
-              break
-            }
-
-            const has_acceptance = acceptance_str.toUpperCase() == 'X'
-
-            // ===== PUSH DATA =====
-            this.danhsach_excel.push({
-              service_name,
-              contract_value,
-              has_acceptance
-            })
-          }
-
-          if (!isError && this.danhsach_excel.length > 0) {
-            console.log('IMPORT DATA:', this.danhsach_excel)
-            this.read_data_file(this.danhsach_excel)
-          }
-        }
-
-        reader.readAsBinaryString(this.file)
-
-      } catch (error) {
-        console.error(error)
-        this.$toast.error('Có lỗi xảy ra khi đọc file Excel')
-      } finally {
-        this.loading(false)
-      }
-    },
-    async read_data_file(data = null) {
-      if (!Array.isArray(data) || data.length === 0) {
-        this.$toast.error('Không có dữ liệu để kiểm tra')
-        return
-      }
-
-      const request = {
-        user_id: 0,   // ⚠️ đảm bảo biến này tồn tại
-        items: data
-      }
-      var result = await API.CheckImportIndicatorUserScore(this, request)
-      if(result){
-        result=JSON.parse(result)
-        this.dataCheckImports = result
-        this.$refs.checkImportIndicatorUserScoreModal.showModal()
-      }else {
-        this.$toast.error('Không có dữ liệu trả về')
-      }
-    },
-    kiemTraDuLieu(columns) {
-      if (!columns || columns.length < 4) {
-        this.$toast.error(
-          'File Excel phải gồm các cột: STT, Dịch vụ, Giá trị hợp đồng, Hợp đồng đã nghiệm thu'
-        )
-        return false
-      }
-      return true
-    },
-    checkfile() {
-      if (!this.file) {
-        this.$toast.error('Chưa chọn file Excel')
-        return false
-      }
-
-      if (
-        this.file.type !==
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-      ) {
-        this.$toast.error('File upload không đúng định dạng .xlsx')
-        return false
-      }
-
-      return true
-    },
+    }
   },
   mounted(){
     setTimeout(()=>{

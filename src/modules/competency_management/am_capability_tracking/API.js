@@ -223,4 +223,16 @@ export default {
     }
   },
 
+
+  async GetAppraisalList(parent, data) {
+    return await this.getDs(
+      parent,
+      `revenue/AmCapabilityCracking/GetAppraisalList`
+      + `?departmentId=${data.departmentId}`
+      + `&userId=${data.userId}`,
+      "[]",
+      true
+    )
+  }
+
 }
