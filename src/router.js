@@ -797,7 +797,7 @@ const router = createRouter({
         {
           path: "am_capability_appraisal",
           name: "am_capability_appraisal",
-          component: () => import("@/modules/competency_management/am_capability_tracking/AmCapabilityAppraisal.vue"),
+          component: () => import("@/modules/competency_management/am_capability_appraisal/AmCapabilityAppraisal.vue"),
           meta: {
             requiresAuth: true,
             title: "Thẩm định năng lực AM",

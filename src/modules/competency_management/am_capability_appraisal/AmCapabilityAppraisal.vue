@@ -14,21 +14,7 @@
       
       <div class="box-form filter-wrapper">
         <div class="row">
-          
 
-          <!-- Nhân sự -->
-          <div class="col-md-3 col-12">
-            <div class="info-row">
-              <div class="key bold">Nhân sự</div>
-              <div class="value">
-                <select2
-                  v-model="staff_selected"
-                  :options="staff_list.map(e=>({id:e.user_id, text:e.display_name}))"
-                  @select="onChangeStaff"
-                />
-              </div>
-            </div>
-          </div>
           <!-- Đơn vị-->
           <div class="col-sm-3 col-12">
             <div class="info-row">
@@ -38,6 +24,20 @@
                   v-model="unit_selected"
                   :options="unit_list"
                   @select="onChangeUnit"
+                />
+              </div>
+            </div>
+          </div>
+          
+          <!-- Nhân sự -->
+          <div class="col-md-3 col-12">
+            <div class="info-row">
+              <div class="key bold">Nhân sự</div>
+              <div class="value">
+                <select2
+                  v-model="staff_selected"
+                  :options="staff_list.map(e=>({id:e.user_id, text:e.display_name}))"
+                  @select="onChangeStaff"
                 />
               </div>
             </div>
@@ -89,22 +89,14 @@
 </template>
 
 <script>
-import StatisticsCard from './StatisticsCard.vue'
-//import CapabilityTable from './CapabilityTable.vue'
 import CapabilityAppraisalTable from './CapabilityAppraisalTable.vue'
 import API from './API'
-import UpdateCapabilityContractDialog from './UpdateCapabilityContractDialog.vue'
 import AppraisalEvaluationDialog from './AppraisalEvaluationDialog.vue'
-import * as XLSX from 'xlsx'
-import CheckImportIndicatorUserScoreModal from './CheckImportIndicatorUserScoreModal.vue'
 export default {
   name: 'AmCapability',
   components: {
-    StatisticsCard,
     CapabilityAppraisalTable,
-    UpdateCapabilityContractDialog,
     AppraisalEvaluationDialog,
-    CheckImportIndicatorUserScoreModal
   },
   data() {
     return {
@@ -185,12 +177,26 @@ export default {
         }
       }
     },
-    onChangeUnit() {
+    async onChangeUnit() {
+      // Khi đổi đơn vị thì reset lại danh sách nhân sự 
+      // lấy hết nhân sự của đơn vị vừa mới 
+      let result = await API.GetUsersByUserUnit(this, {
+        departmentId: this.unit_selected
+      });
+
+      let users = [];
+      if (result) {
+        users = JSON.parse(result)
+      }
+
+      this.staff_list = [
+        {user_id: 0, display_name: 'Tất cả nhân sự'},
+        ...users
+      ]
+
+      // Reset lại về 0 
+      this.staff_selected = 0;
       this.loadDataGrid()
-    },
-    onChangeService(val) {
-      this.loadDataGrid()
-      this.loadStatistics()
     },
     successAppraisal(){
       this.loadDataGrid()
@@ -260,15 +266,7 @@ export default {
       }
     },
     async loadPage(){
-      let result=await API.GetUsersByUserUnit(this)
-      if(result){
-        this.staff_list=JSON.parse(result)
-      }
-      var userId=this.$_root.token.getUserId()
-      if(userId&&this.staff_list.findIndex(x=>x.user_id==userId)>-1){
-        this
-        .staff_selected=userId
-      }
+      // 1. Load danh sách đơn vị 
       var department = await API.GetDepartmentByRoot(this, 1)
       if(department){
         department=JSON.parse(department)
@@ -281,6 +279,28 @@ export default {
         ]
         this.unit_selected=0
       }
+
+      // 2. Load danh sách nhân sự 
+      let result = await API.GetUsersByUserUnit(this)
+
+      let users = []
+      if (result) {
+        users = JSON.parse(result)
+      }
+
+      this.staff_list = [
+        {user_id: 0, display_name: 'Tất cả nhân sự'},
+        ...users 
+      ]
+      this.staff_selected = 0;
+
+      var currentUserId = this.$root.token.getUserId()
+      if (currentUserId && users.some(x => x.user_id == currentUserId)) {
+        this.staff_selected = currentUserId
+      } else {
+        this.staff_selected = 0
+      }
+      
 
       this.loadDataGrid()
       this.loadStatistics()
