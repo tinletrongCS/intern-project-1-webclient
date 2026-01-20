@@ -177,9 +177,11 @@ export default {
         }
       }
     },
+
+    // Click chọn đổi đơn vị 
     async onChangeUnit() {
       // Khi đổi đơn vị thì reset lại danh sách nhân sự 
-      // lấy hết nhân sự của đơn vị vừa mới 
+      // lấy hết nhân sự của đơn vị vừa mới bấm chọn 
       let result = await API.GetUsersByUserUnit(this, {
         departmentId: this.unit_selected
       });
@@ -234,13 +236,13 @@ export default {
     onAppraisal() {
       // 1. Kiểm tra xem đã chọn dòng (nhân viên) nào chưa
       if (!this.selectedRows || this.selectedRows.length === 0) {
-        this.$toast.warning('Vui lòng chọn nhân sự để thẩm định');
+        this.$toast.error('Vui lòng chọn nhân sự để thẩm định');
         return;
       }
 
       // 2. Chỉ cho phép chọn 1 nhân viên (vì Popup thiết kế để hiển thị cây chi tiết của 1 người)
       if (this.selectedRows.length > 1) {
-        this.$toast.warning('Vui lòng chỉ chọn 1 nhân sự mỗi lần để xem chi tiết');
+        this.$toast.info('Vui lòng chỉ chọn 1 nhân sự mỗi lần để xem chi tiết');
         return;
       }
 
@@ -254,7 +256,7 @@ export default {
     async loadDataGrid() {
       var result = await API.GetAppraisalList(this, {
         departmentId: this.unit_selected || 0,
-        userId: this.staff_selected
+        userId: this.staff_selected || 0
       })
       if (result){
         var parsedData = (typeof result == 'string') ? JSON.parse(result) : result
@@ -276,16 +278,16 @@ export default {
             id: x.department_id,
             text: x.department_name
           }))
-        ]
-        this.unit_selected=0
+        ];
+        this.unit_selected = 0;
       }
-
+      
       // 2. Load danh sách nhân sự 
-      let result = await API.GetUsersByUserUnit(this)
+      let result = await API.GetUsersByUserUnit(this, {departmentId: 0});
 
-      let users = []
+      let users = [];
       if (result) {
-        users = JSON.parse(result)
+        users = JSON.parse(result);
       }
 
       this.staff_list = [
@@ -293,15 +295,7 @@ export default {
         ...users 
       ]
       this.staff_selected = 0;
-
-      var currentUserId = this.$root.token.getUserId()
-      if (currentUserId && users.some(x => x.user_id == currentUserId)) {
-        this.staff_selected = currentUserId
-      } else {
-        this.staff_selected = 0
-      }
       
-
       this.loadDataGrid()
       this.loadStatistics()
     },
